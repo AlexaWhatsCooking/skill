@@ -1,0 +1,22 @@
+{
+  "intents": [
+    {
+      "intent": "StartCookingIntent"
+    },
+    {
+      "intent": "NextStepIntent"
+    },
+    {
+      "intent": "LastStepIntent"
+    },
+    {
+      "intent": "RepeatStepIntent"
+    },
+    {
+      "intent": "QuitIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+StartCookingIntent cook mashed potatoes
+StartCookingIntent mashed potatoes
+NextStepIntent next
+LastStepIntent last
+LastStepIntent previous
+RepeatStepIntent repeat
+QuitIntent quit
