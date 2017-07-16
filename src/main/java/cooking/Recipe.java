@@ -77,7 +77,7 @@ public class Recipe {
 			String speechText = "You have completed cooking "+name+". Bon appetit!";
 
 	        SimpleCard card = new SimpleCard();
-	        card.setTitle("Step "+step);
+	        card.setTitle("Step "+(step+1));
 	        card.setContent(speechText);
 
 	        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
@@ -91,7 +91,7 @@ public class Recipe {
         String speechText = steps.get(step);
 
         SimpleCard card = new SimpleCard();
-        card.setTitle("Step "+step);
+        card.setTitle("Step "+(step+1));
         card.setContent(speechText);
 
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
@@ -112,7 +112,7 @@ public class Recipe {
         String speechText = speechTextSB.toString();
 
         SimpleCard card = new SimpleCard();
-        card.setTitle("Step "+step);
+        card.setTitle("Step "+(step+1));
         card.setContent(speechText);
 
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
@@ -125,7 +125,7 @@ public class Recipe {
         String speechText = steps.get(step);
 
         SimpleCard card = new SimpleCard();
-        card.setTitle("Step "+step);
+        card.setTitle("Step "+(step+1));
         card.setContent(speechText);
 
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
