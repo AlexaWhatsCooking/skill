@@ -19,6 +19,19 @@
       "intent": "RepeatStepIntent"
     },
     {
+      "intent": "ReplaceIntent",
+      "slots": [
+        {
+          "name": "oldFood",
+          "type": "AMAZON.Food"
+        },
+        {
+          "name": "newFood",
+          "type": "AMAZON.Food"
+        }
+      ]
+    },
+    {
       "intent": "AMAZON.StopIntent"
     },
     {

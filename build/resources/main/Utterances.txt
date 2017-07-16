@@ -1,6 +1,6 @@
 StartCookingIntent cook {food}
-StartCookingIntent {food}
 NextStepIntent next
 LastStepIntent last
 LastStepIntent previous
 RepeatStepIntent repeat
+ReplaceIntent replace {oldFood} with {newFood}

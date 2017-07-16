@@ -13,13 +13,9 @@ import com.amazon.speech.speechlet.Speechlet;
 import com.amazon.speech.speechlet.SpeechletException;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
-import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
 
 public class AlexaWhatsCookingSpeechlet implements Speechlet {
-    private static final String EXIT = "you can say quit to exit the application";
-    private static final String RECIPE_CONTROL = "You can say next to go to the next step, previous to go to the previous step, repeat to repeat the step, or "+EXIT;
-
 	private static final Logger log = LoggerFactory.getLogger(AlexaWhatsCookingSpeechlet.class);
     
     private Recipe recipe;
@@ -56,17 +52,24 @@ public class AlexaWhatsCookingSpeechlet implements Speechlet {
         	return recipe.previous();
         }else if ("RepeatStepIntent".equals(intentName)){
         	return recipe.repeat();
-        }else if ("AMAZON.StopIntent".equals(intentName)){
-        	return getQuitResponse();
+        }else if("ReplaceIntent".equals(intentName)){
+        	return recipe.replace(intent);
         }else if ("AMAZON.HelpIntent".equals(intentName)) {
-            return getHelpResponse();
+            return getWelcomeResponse();
         } else {
-        	return getHelpResponse();
+        	return getDidNotUnderstandResponse();
         }
     }
 
-    private SpeechletResponse getWelcomeResponse() {
-        String speechText = "Say a dish you would like to prepare.";
+	private SpeechletResponse getWelcomeResponse() {
+    	StringBuilder speechTextSB = new StringBuilder();
+    	speechTextSB.append("Welcome to My Recipe skill. ");
+    	speechTextSB.append("You can ask me to start cooking a recipe. ");
+    	speechTextSB.append("Or navigate the steps of a recipe by asking me to repeat a step, go to the next step, or go to the privious step. ");
+    	speechTextSB.append("For exsample you can say 'Alexa, I want to cook mashed potatoes from My Recipe.' ");
+    	speechTextSB.append("Or 'Alexa, what is the next step from My Recipe.' ");
+    	
+        String speechText = speechTextSB.toString();
 
         SimpleCard card = new SimpleCard();
         card.setTitle("Welcome Card");
@@ -75,10 +78,7 @@ public class AlexaWhatsCookingSpeechlet implements Speechlet {
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
         speech.setText(speechText);
 
-        Reprompt reprompt = new Reprompt();
-        reprompt.setOutputSpeech(speech);
-
-        return SpeechletResponse.newAskResponse(speech, reprompt, card);
+        return SpeechletResponse.newTellResponse(speech, card);
     }
     
     private SpeechletResponse getStartCookingResponse(Intent intent) {
@@ -87,59 +87,11 @@ public class AlexaWhatsCookingSpeechlet implements Speechlet {
     	return recipe.start();
 	}
 
-    private SpeechletResponse getHelpResponse() {
-    	if(recipe != null){
-    		return getRecipeControls("");
-    	} else {
-    		return getMenuControls();
-    	}
-    }
-    
-	private SpeechletResponse getMenuControls() {
-		String speechText = "Say a dish you want to cook. You can say some thing like mashed potatoes, or "+EXIT;
-
-        SimpleCard card = new SimpleCard();
-        card.setTitle("Menu Controls");
-        card.setContent(speechText);
-
-        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-        speech.setText(speechText);
-
-        Reprompt reprompt = new Reprompt();
-        reprompt.setOutputSpeech(speech);
-
-        return SpeechletResponse.newAskResponse(speech, reprompt, card);
+    private SpeechletResponse getDidNotUnderstandResponse() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	private SpeechletResponse getRecipeControls(String prepend) {
-		String speechText = prepend + RECIPE_CONTROL;
-
-        SimpleCard card = new SimpleCard();
-        card.setTitle("Menu Controls");
-        card.setContent(speechText);
-
-        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-        speech.setText(speechText);
-
-        Reprompt reprompt = new Reprompt();
-        reprompt.setOutputSpeech(speech);
-
-        return SpeechletResponse.newAskResponse(speech, reprompt, card);
-	}
-
-	private SpeechletResponse getQuitResponse() {
-		String speechText = "Enjoy your meal!";
-
-        SimpleCard card = new SimpleCard();
-        card.setTitle("Good bye");
-        card.setContent(speechText);
-
-        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-        speech.setText(speechText);
-
-        return SpeechletResponse.newTellResponse(speech, card);
-	}
-    
 	@Override
     public void onSessionEnded(final SessionEndedRequest request, final Session session)
             throws SpeechletException {
