@@ -1,7 +1,13 @@
 {
   "intents": [
     {
-      "intent": "StartCookingIntent"
+      "intent": "StartCookingIntent",
+      "slots": [
+        {
+          "name": "food",
+          "type": "AMAZON.Food"
+        }
+      ]
     },
     {
       "intent": "NextStepIntent"
@@ -13,7 +19,7 @@
       "intent": "RepeatStepIntent"
     },
     {
-      "intent": "QuitIntent"
+      "intent": "AMAZON.StopIntent"
     },
     {
       "intent": "AMAZON.HelpIntent"

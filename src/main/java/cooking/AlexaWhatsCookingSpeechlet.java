@@ -49,14 +49,14 @@ public class AlexaWhatsCookingSpeechlet implements Speechlet {
         String intentName = (intent != null) ? intent.getName() : null;
 
         if ("StartCookingIntent".equals(intentName)){
-        	return getStartCookingResponse();
+        	return getStartCookingResponse(intent);
         }else if("NextStepIntent".equals(intentName)){
         	return recipe.next();
         }else if ("LastStepIntent".equals(intentName)){
         	return recipe.previous();
         }else if ("RepeatStepIntent".equals(intentName)){
         	return recipe.repeat();
-        }else if("QuitIntent".equals(intentName)){
+        }else if ("AMAZON.StopIntent".equals(intentName)){
         	return getQuitResponse();
         }else if ("AMAZON.HelpIntent".equals(intentName)) {
             return getHelpResponse();
@@ -66,7 +66,7 @@ public class AlexaWhatsCookingSpeechlet implements Speechlet {
     }
 
     private SpeechletResponse getWelcomeResponse() {
-        String speechText = "Welcome to the Alexa what's cooking. Say a dish you would like to prepare.";
+        String speechText = "Say a dish you would like to prepare.";
 
         SimpleCard card = new SimpleCard();
         card.setTitle("Welcome Card");
@@ -81,12 +81,8 @@ public class AlexaWhatsCookingSpeechlet implements Speechlet {
         return SpeechletResponse.newAskResponse(speech, reprompt, card);
     }
     
-    private SpeechletResponse getStartCookingResponse() {
-    	if(recipe != null){
-    		return getRecipeControls("You are already cooking "+recipe.getName()+". ");
-    	}
-    	
-    	recipe = new Recipe();
+    private SpeechletResponse getStartCookingResponse(Intent intent) {
+    	recipe = new Recipe(intent.getSlot("food"));
     	
     	return recipe.start();
 	}

@@ -3,6 +3,7 @@ package cooking;
 import java.util.Arrays;
 import java.util.List;
 
+import com.amazon.speech.slu.Slot;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
@@ -10,7 +11,7 @@ import com.amazon.speech.ui.SimpleCard;
 
 public class Recipe {
 	
-	private String name;
+	private String name = "mashed potatoes";
 	private List<String> ingrudients = Arrays.asList(
 			"two pounds of potatos", 
 			"two tablespoons of butter", 
@@ -25,6 +26,10 @@ public class Recipe {
 			"Mash with a potato masher or large fork until smooth and creamy");
 
 	private int step = -1;
+
+	public Recipe(Slot slot) {
+		name = slot.getValue();
+	}
 
 	public SpeechletResponse start() {
     	StringBuilder sb = new StringBuilder();
