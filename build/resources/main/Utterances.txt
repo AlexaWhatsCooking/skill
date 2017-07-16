@@ -1,14 +1,28 @@
 StartCookingIntent cook {food}
 StartCookingIntent I want to cook {food}
 StartCookingIntent lets cook {food}
+StartCookingIntent how to make {food}
+StartCookingIntent could {food}
+StartCookingIntent I want to could {food}
+StartCookingIntent lets could {food}
+StartCookingIntent launch {food}
+StartCookingIntent start {food}
+StartCookingIntent start cooking {food}
 NextStepIntent next
+NextStepIntent next step
 NextStepIntent what is the next step
+GoToFinalStepIntent go to the final step
+GoToFinalStepIntent go to final step
+HearFinalStepIntent what is the final step
+HearFinalStepIntent final step
 LastStepIntent last
+LastStepIntent last step
 LastStepIntent what is the last step
 LastStepIntent previous
 LastStepIntent what was the previous step
 LastStepIntent what was the last step
 RepeatStepIntent repeat
+RepeatStepIntent repeat step
 RepeatStepIntent repeat my last step
 RepeatStepIntent repeat my previous step
 ReplaceIntent replace {oldFood} with {newFood}

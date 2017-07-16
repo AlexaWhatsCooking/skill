@@ -72,6 +72,7 @@ public class AlexaWhatsCookingSpeechlet implements Speechlet {
     	speechTextSB.append("Or navigate the steps of a recipe by asking me to repeat a step, go to the next step, or go to the privious step. \n");
     	speechTextSB.append("For exsample you can say 'Alexa, I want to cook mashed potatoes from My Recipe.' \n");
     	speechTextSB.append("Or 'Alexa, what is the next step from My Recipe.' \n");
+    	speechTextSB.append("Make sure you say 'from My Recipe' at the end so I can refer to your recipe. \n");
     	
         String speechText = speechTextSB.toString();
 
