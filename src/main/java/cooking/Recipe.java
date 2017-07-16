@@ -31,12 +31,9 @@ public class Recipe {
 
 	private void buildSteps() {
 		steps = Arrays.asList(
-				"In a large pot, bring "+ingredients.get(3).getName()+" to a boil",
-				"Carefully put diced "+ingredients.get(0).getName()+" in the boiling water",
+				"Carefully put diced "+ingredients.get(0).getName()+" in the boiling "+ingredients.get(3).getName(),
 				"Boil for about 10 minutes or until the "+ingredients.get(0).getName()+" are fork tender",
-				"Turn off burner and drain the "+ingredients.get(0).getName(),
-				"Add the "+ingredients.get(1).getName()+" and "+ingredients.get(2).getName()+" then mix with a spoon or spatula until butter is melted",
-				"Mash with a potato masher or large fork until smooth and creamy");
+				"Add the "+ingredients.get(1).getName()+" and "+ingredients.get(2).getName()+". Then mash with a patato masher until "+ingredients.get(1).getName()+" is melted");
 	}
 
 	public SpeechletResponse start() {
