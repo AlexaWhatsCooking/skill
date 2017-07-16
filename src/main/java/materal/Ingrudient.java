@@ -30,7 +30,10 @@ public class Ingrudient {
 	
 	@Override
 	public String toString(){
-		return Double.toString(amount)+" "+unit+" of "+name;
+		 if(amount == (int) amount){
+			 return String.format("%d %s of %s", (int)amount, unit, name);
+		 }
+		return String.format("%s %s of %s", amount, unit, name);
 	}
 
 }

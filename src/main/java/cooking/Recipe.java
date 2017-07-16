@@ -15,23 +15,28 @@ public class Recipe {
 	
 	private String name = "mashed potatoes";
 	private List<Ingrudient> ingrudients = Arrays.asList(
-			new Ingrudient("potatos", 2, "pounds"),
+			new Ingrudient("potatoes", 2, "pounds"),
 			new Ingrudient("butter", 2, "tablespoons"),
 			new Ingrudient("milk", .5, "cups"),
 			new Ingrudient("salted water", 4, "cups")
 			);
-	private List<String> steps = Arrays.asList(
-			"In a large pot, bring "+ingrudients.get(3).getName()+" to a boil",
-			"Carefully put diced "+ingrudients.get(0).getName()+" in the boiling water",
-			"Boil for about 10 minutes or until the "+ingrudients.get(0).getName()+" are fork tender",
-			"Turn off burner and drain the "+ingrudients.get(0).getName(),
-			"Add the "+ingrudients.get(1).getName()+" and "+ingrudients.get(2).getName()+" then mix with a spoon or spatula until butter is melted",
-			"Mash with a potato masher or large fork until smooth and creamy");
+	private List<String> steps;
 
 	private int step = -1;
 
 	public Recipe(Slot slot) {
 		name = slot.getValue();
+		buildSteps();
+	}
+
+	private void buildSteps() {
+		steps = Arrays.asList(
+				"In a large pot, bring "+ingrudients.get(3).getName()+" to a boil",
+				"Carefully put diced "+ingrudients.get(0).getName()+" in the boiling water",
+				"Boil for about 10 minutes or until the "+ingrudients.get(0).getName()+" are fork tender",
+				"Turn off burner and drain the "+ingrudients.get(0).getName(),
+				"Add the "+ingrudients.get(1).getName()+" and "+ingrudients.get(2).getName()+" then mix with a spoon or spatula until butter is melted",
+				"Mash with a potato masher or large fork until smooth and creamy");
 	}
 
 	public SpeechletResponse start() {
@@ -154,6 +159,8 @@ public class Recipe {
 
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
         speech.setText(speechText);
+        
+        buildSteps();
 		return SpeechletResponse.newTellResponse(speech, card);
 	}
 

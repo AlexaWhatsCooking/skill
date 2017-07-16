@@ -1,6 +1,15 @@
 StartCookingIntent cook {food}
+StartCookingIntent I want to cook {food}
+StartCookingIntent lets cook {food}
 NextStepIntent next
+NextStepIntent what is the next step
 LastStepIntent last
+LastStepIntent what is the last step
 LastStepIntent previous
+LastStepIntent what was the previous step
+LastStepIntent what was the last step
 RepeatStepIntent repeat
+RepeatStepIntent repeat my last step
+RepeatStepIntent repeat my previous step
 ReplaceIntent replace {oldFood} with {newFood}
+ReplaceIntent I want to replace {oldFood} with {newFood}
