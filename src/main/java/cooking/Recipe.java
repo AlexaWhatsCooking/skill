@@ -51,10 +51,10 @@ public class Recipe {
     		String item = ingrudient.toString();
     		if(i == ingrudients.size()-1){
     			speachBuilder.append("and "+item+", ");
-    			listOfIngrudientsBuilder.append(ingrudient.getName());
+    			listOfIngrudientsBuilder.append(ingrudient.toString());
     		} else{
     			speachBuilder.append(item+", ");
-    			listOfIngrudientsBuilder.append(ingrudient.getName()+"\n");
+    			listOfIngrudientsBuilder.append(ingrudient.toString()+"\n");
     		}
     	}
     	
