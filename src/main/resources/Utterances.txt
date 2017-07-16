@@ -1,6 +1,7 @@
 StartCookingIntent cook {food}
 StartCookingIntent I want to cook {food}
 StartCookingIntent lets cook {food}
+StartCookingIntent how to make {food}
 NextStepIntent next
 NextStepIntent what is the next step
 LastStepIntent last
