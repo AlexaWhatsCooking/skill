@@ -99,6 +99,24 @@ public class Recipe {
 
         return SpeechletResponse.newTellResponse(speech, card);
 	}
+	
+	public SpeechletResponse last(boolean isGoTo) {
+		if(isGoTo){
+			step = steps.size();
+		}
+		
+		int lastStep = steps.size()-1;
+		String speechText = steps.get(lastStep);
+
+        SimpleCard card = new SimpleCard();
+        card.setTitle("Step "+(lastStep+1));
+        card.setContent(speechText);
+
+        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+        speech.setText(speechText);
+
+        return SpeechletResponse.newTellResponse(speech, card);
+	}
 
 	public SpeechletResponse previous() {
 		step--;

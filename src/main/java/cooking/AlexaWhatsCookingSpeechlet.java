@@ -50,6 +50,10 @@ public class AlexaWhatsCookingSpeechlet implements Speechlet {
         	return recipe.next();
         }else if ("LastStepIntent".equals(intentName)){
         	return recipe.previous();
+        }else if ("GoToFinalStepIntent".equals(intentName)){
+        	return recipe.last(true);
+        }else if ("HearFinalStepIntent".equals(intentName)){
+        	return recipe.last(false);
         }else if ("RepeatStepIntent".equals(intentName)){
         	return recipe.repeat();
         }else if("ReplaceIntent".equals(intentName)){

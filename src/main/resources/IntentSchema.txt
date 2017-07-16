@@ -16,6 +16,12 @@
       "intent": "LastStepIntent"
     },
     {
+      "intent": "GoToFinalStepIntent"
+    },
+    {
+      "intent": "HearFinalStepIntent"
+    },
+    {
       "intent": "RepeatStepIntent"
     },
     {
