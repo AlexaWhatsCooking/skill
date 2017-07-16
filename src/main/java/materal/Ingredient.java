@@ -1,12 +1,12 @@
 package materal;
 
-public class Ingrudient {
+public class Ingredient {
 	
 	private String name;
 	private double amount;
 	private String unit;
 	
-	public Ingrudient(String name, double amount, String unit){
+	public Ingredient(String name, double amount, String unit){
 		this.name = name;
 		this.amount = amount;
 		this.unit = unit;
@@ -30,9 +30,12 @@ public class Ingrudient {
 	
 	@Override
 	public String toString(){
-		 if(amount == (int) amount){
-			 return String.format("%d %s of %s", (int)amount, unit, name);
-		 }
+		if(amount == .5){
+			return String.format("half a %s of %s", unit, name);
+		}
+		if(amount == (int) amount){
+			return String.format("%d %s of %s", (int)amount, unit, name);
+		}
 		return String.format("%s %s of %s", amount, unit, name);
 	}
 

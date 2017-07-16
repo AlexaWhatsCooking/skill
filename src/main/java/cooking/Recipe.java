@@ -9,16 +9,16 @@ import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.SimpleCard;
 
-import materal.Ingrudient;
+import materal.Ingredient;
 
 public class Recipe {
 	
 	private String name = "mashed potatoes";
-	private List<Ingrudient> ingrudients = Arrays.asList(
-			new Ingrudient("potatoes", 2, "pounds"),
-			new Ingrudient("butter", 2, "tablespoons"),
-			new Ingrudient("milk", .5, "cups"),
-			new Ingrudient("salted water", 4, "cups")
+	private List<Ingredient> ingredients = Arrays.asList(
+			new Ingredient("potatoes", 2, "pounds"),
+			new Ingredient("butter", 2, "tablespoons"),
+			new Ingredient("milk", .5, "cups"),
+			new Ingredient("salted water", 4, "cups")
 			);
 	private List<String> steps;
 
@@ -31,38 +31,38 @@ public class Recipe {
 
 	private void buildSteps() {
 		steps = Arrays.asList(
-				"In a large pot, bring "+ingrudients.get(3).getName()+" to a boil",
-				"Carefully put diced "+ingrudients.get(0).getName()+" in the boiling water",
-				"Boil for about 10 minutes or until the "+ingrudients.get(0).getName()+" are fork tender",
-				"Turn off burner and drain the "+ingrudients.get(0).getName(),
-				"Add the "+ingrudients.get(1).getName()+" and "+ingrudients.get(2).getName()+" then mix with a spoon or spatula until butter is melted",
+				"In a large pot, bring "+ingredients.get(3).getName()+" to a boil",
+				"Carefully put diced "+ingredients.get(0).getName()+" in the boiling water",
+				"Boil for about 10 minutes or until the "+ingredients.get(0).getName()+" are fork tender",
+				"Turn off burner and drain the "+ingredients.get(0).getName(),
+				"Add the "+ingredients.get(1).getName()+" and "+ingredients.get(2).getName()+" then mix with a spoon or spatula until butter is melted",
 				"Mash with a potato masher or large fork until smooth and creamy");
 	}
 
 	public SpeechletResponse start() {
     	StringBuilder speachBuilder = new StringBuilder();
-    	StringBuilder listOfIngrudientsBuilder = new StringBuilder();
-    	speachBuilder.append("Lets start "+name+". ");
+    	StringBuilder listOfIngredientsBuilder = new StringBuilder();
+    	speachBuilder.append("Lets start cooking "+name+". ");
     	
     	speachBuilder.append("You will need ");
     	
-    	for(int i = 0; i < ingrudients.size(); i++){
-    		Ingrudient ingrudient = ingrudients.get(i);
-    		String item = ingrudient.toString();
-    		if(i == ingrudients.size()-1){
+    	for(int i = 0; i < ingredients.size(); i++){
+    		Ingredient ingredient = ingredients.get(i);
+    		String item = ingredient.toString();
+    		if(i == ingredients.size()-1){
     			speachBuilder.append("and "+item+", ");
-    			listOfIngrudientsBuilder.append(ingrudient.toString());
+    			listOfIngredientsBuilder.append(ingredient.toString());
     		} else{
     			speachBuilder.append(item+", ");
-    			listOfIngrudientsBuilder.append(ingrudient.toString()+"\n");
+    			listOfIngredientsBuilder.append(ingredient.toString()+"\n");
     		}
     	}
     	
     	String speechText = speachBuilder.toString();
 
         SimpleCard card = new SimpleCard();
-        card.setTitle("List of ingrudients");
-        card.setContent(listOfIngrudientsBuilder.toString());
+        card.setTitle("List of ingredient");
+        card.setContent(listOfIngredientsBuilder.toString());
 
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
         speech.setText(speechText);
@@ -77,7 +77,7 @@ public class Recipe {
 			String speechText = "You have completed cooking "+name+". Bon appetit!";
 
 	        SimpleCard card = new SimpleCard();
-	        card.setTitle("Next Step");
+	        card.setTitle("Step "+step);
 	        card.setContent(speechText);
 
 	        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
@@ -91,7 +91,7 @@ public class Recipe {
         String speechText = steps.get(step);
 
         SimpleCard card = new SimpleCard();
-        card.setTitle("Next Step");
+        card.setTitle("Step "+step);
         card.setContent(speechText);
 
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
@@ -112,7 +112,7 @@ public class Recipe {
         String speechText = speechTextSB.toString();
 
         SimpleCard card = new SimpleCard();
-        card.setTitle("Previous Step");
+        card.setTitle("Step "+step);
         card.setContent(speechText);
 
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
@@ -125,7 +125,7 @@ public class Recipe {
         String speechText = steps.get(step);
 
         SimpleCard card = new SimpleCard();
-        card.setTitle("Repeat Step");
+        card.setTitle("Step "+step);
         card.setContent(speechText);
 
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
@@ -140,7 +140,7 @@ public class Recipe {
 		
 		String speechText = null;
 		
-		for(Ingrudient ing : ingrudients){
+		for(Ingredient ing : ingredients){
 			String oldIngDis = ing.toString();
 			if(ing.getName().equalsIgnoreCase(oldFood)){
 				ing.replace(newFood);
@@ -150,11 +150,11 @@ public class Recipe {
 		}
 		
 		if(speechText == null){
-			speechText = oldFood+" was not an ingrudient.";
+			speechText = oldFood+" was not an ingredient.";
 		}
 		
 		SimpleCard card = new SimpleCard();
-        card.setTitle("Replace Ingrudient");
+        card.setTitle("Replace Ingredient");
 		card.setContent(speechText);
 
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();

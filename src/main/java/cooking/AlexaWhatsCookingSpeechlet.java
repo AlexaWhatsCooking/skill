@@ -63,16 +63,16 @@ public class AlexaWhatsCookingSpeechlet implements Speechlet {
 
 	private SpeechletResponse getWelcomeResponse() {
     	StringBuilder speechTextSB = new StringBuilder();
-    	speechTextSB.append("Welcome to My Recipe skill. ");
-    	speechTextSB.append("You can ask me to start cooking a recipe. ");
-    	speechTextSB.append("Or navigate the steps of a recipe by asking me to repeat a step, go to the next step, or go to the privious step. ");
-    	speechTextSB.append("For exsample you can say 'Alexa, I want to cook mashed potatoes from My Recipe.' ");
-    	speechTextSB.append("Or 'Alexa, what is the next step from My Recipe.' ");
+    	speechTextSB.append("Welcome to My Recipe skill. \n");
+    	speechTextSB.append("You can ask me to start cooking a recipe. \n");
+    	speechTextSB.append("Or navigate the steps of a recipe by asking me to repeat a step, go to the next step, or go to the privious step. \n");
+    	speechTextSB.append("For exsample you can say 'Alexa, I want to cook mashed potatoes from My Recipe.' \n");
+    	speechTextSB.append("Or 'Alexa, what is the next step from My Recipe.' \n");
     	
         String speechText = speechTextSB.toString();
 
         SimpleCard card = new SimpleCard();
-        card.setTitle("Welcome Card");
+        card.setTitle("Welcome to My Recipe");
         card.setContent(speechText);
 
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
