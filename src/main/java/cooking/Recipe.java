@@ -17,7 +17,7 @@ public class Recipe {
 	private List<Ingredient> ingredients = Arrays.asList(
 			new Ingredient("potatoes", 2, "pounds"),
 			new Ingredient("butter", 2, "tablespoons"),
-			new Ingredient("milk", .5, "cups"),
+			new Ingredient("milk", .5, "cup"),
 			new Ingredient("salted water", 4, "cups")
 			);
 	private List<String> steps;
@@ -33,7 +33,7 @@ public class Recipe {
 		steps = Arrays.asList(
 				"Carefully put diced "+ingredients.get(0).getName()+" in the boiling "+ingredients.get(3).getName(),
 				"Boil for about 10 minutes or until the "+ingredients.get(0).getName()+" are fork tender",
-				"Add the "+ingredients.get(1).getName()+" and "+ingredients.get(2).getName()+". Then mash with a patato masher until "+ingredients.get(1).getName()+" is melted");
+				"Add the "+ingredients.get(1).getName()+" and "+ingredients.get(2).getName()+". Then mash with a potato masher until "+ingredients.get(1).getName()+" is melted");
 	}
 
 	public SpeechletResponse start() {
